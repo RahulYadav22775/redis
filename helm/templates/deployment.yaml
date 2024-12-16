@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: redis
+  namespace: roboshop
+  labels: 
+    app: redis
+    project: roboshop
+    tier: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:  # these labels for used to find pods
+      app: redis
+      project: roboshop
+      tier: db
+  templates:
+    metadata:
+      labels:
+        app: redis
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        imagePullPolicy: Always
+
+       
